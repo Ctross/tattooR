@@ -1,4 +1,23 @@
 
+add.alpha <- function(col, alpha=1){
+  if(missing(col)) 
+   stop("Please provide a vector of colours.")
+  apply(sapply(col, col2rgb)/255, 2, 
+   function(x) 
+   rgb(x[1], x[2], x[3], alpha=alpha))  
+ }
+ 
+rad2deg <- function(rad) {(rad * 180) / (pi)}
+
+deg2rad <- function(deg) {(deg * pi) / (180)}
+
+sec.center  <- function(r,t){
+    x <- r * cos(t)
+    y <- r * sin(t)
+    return(c(x,y))
+    }
+
+
 circle <- function(samps=10000, a=4, b=0.3, rad=1.2, x0=0, y0=0, color="white", alpha=0.5, add=FALSE, bg="black"){
     u <- 2*pi*runif(samps)
     r <- rad*sqrt(rbeta(samps,a,b))
